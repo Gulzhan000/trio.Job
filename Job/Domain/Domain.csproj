@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Entities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Domain.csproj" />
+  </ItemGroup>
 </Project>

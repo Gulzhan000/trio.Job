@@ -1,0 +1,12 @@
+﻿@model Domain.Entities.UserProfile
+
+<h2>Детали профиля</h2>
+
+<p><strong>Номер телефона:</strong> @Model.PhoneNumber</p>
+<p><strong>Резюме:</strong> @Model.Resume</p>
+<p><strong>Описание:</strong> @Model.Description</p>
+<p><strong>Дата рождения:</strong> @Model.DateOfBirth.ToShortDateString()</p>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редактировать</a>
+<a asp-action="Index" class="btn btn-secondary">Вернуться к списку</a>
+

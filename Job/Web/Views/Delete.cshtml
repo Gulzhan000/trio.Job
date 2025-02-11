@@ -1,0 +1,11 @@
+﻿@model Domain.Entities.UserProfile
+
+<h2>Удалить профиль</h2>
+<p>Вы уверены, что хотите удалить этот профиль?</p>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Удалить</button>
+</form>
+<a asp-action="Index">Отмена</a>
+
