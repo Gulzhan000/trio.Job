@@ -4,25 +4,27 @@ using Microsoft.EntityFrameworkCore;
 using Application.Interfaces.Common;
 using Domain.Entities;
 
-namespace Infrastructure.Data;
-
-public class ApplicationDbContext : IdentityDbContext<IdentityUser>, IApplicationDbContext
+namespace Infrastructure.Data
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {
-        UserProfiles = Set<UserProfile>();
-    }
-
-    // Добавляем DbSet для UserProfile
-    public DbSet<UserProfile> UserProfiles { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>, IApplicationDbContext
     {
-        base.OnModelCreating(modelBuilder);
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+            Users = Set<User>();  // инициализация DbSet<User>
+        }
 
-        // Можно добавить конфигурацию таблицы (например, имя)
-        modelBuilder.Entity<UserProfile>().ToTable("UserProfiles");
+        // Добавляем DbSet для User с использованием ключевого слова new
+        public new DbSet<User> Users { get; set; }
 
-        // Если есть связи, их можно настроить здесь
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Настройка имени таблицы
+            modelBuilder.Entity<User>().ToTable("Users");
+
+            // Если есть связи, их можно настроить здесь
+        }
     }
 }
 

@@ -1,0 +1,12 @@
+﻿@model Domain.Entities.User
+
+<h2>Детали профиля</h2>
+
+<p><strong>ID:</strong> @Model.Id</p>
+<p><strong>Ник:</strong> @Model.Nickname</p>
+<p><strong>Имя:</strong> @Model.Name</p>
+<p><strong>Фамилия:</strong> @Model.Surname</p>
+<p><strong>Электронная почта:</strong> @Model.Email</p>
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редактировать</a>
+<a asp-action="Index" class="btn btn-secondary">Вернуться к списку</a>
