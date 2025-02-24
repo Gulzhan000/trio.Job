@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<Domain.Entities.User>
 
 <h2>Пользователь</h2>
-<p><a asp-action="Create">Создать новый профиль</a></p>
+<p><a asp-action="Create">Регистрация</a></p>
 
 <table class="table">
     <thead>
         <tr>
-            <th>Ник</th>
             <th>Имя</th>
             <th>Фамилия</th>
             <th>Электронная почта</th>
+            <th>Дата рождения</th>
             <th>Действия</th>
         </tr>
     </thead>
@@ -17,10 +17,10 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.Nickname</td>
                 <td>@item.Name</td>
                 <td>@item.Surname</td>
                 <td>@item.Email</td>
+                <td>@item.DateOfBirth.ToShortDateString()</td> 
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |

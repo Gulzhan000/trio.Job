@@ -8,9 +8,6 @@ namespace Domain.Entities
         public int Id { get; set; }
 
         [Required]
-        public string Nickname { get; set; }
-
-        [Required]
         public string Name { get; set; }
 
         [Required]
@@ -19,7 +16,11 @@ namespace Domain.Entities
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DateOfBirth { get; set; }  // Изменили на DateTime
     }
+
 }
 
 

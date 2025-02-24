@@ -17,14 +17,13 @@ public class UsersController : Controller
     [HttpGet("")]
     public async Task<IActionResult> Index()
     {
-        var users = await _context.Users.ToListAsync();
-        return View("Index", users);
+        var users = await _context.Users.AsNoTracking().ToListAsync();
+        return View(users);
     }
 
-    [HttpGet("Details/{id}")]
-    public async Task<IActionResult> Details(int? id)
+    [HttpGet("Details/{id:int}")]
+    public async Task<IActionResult> Details(int id)
     {
-        if (id == null) return NotFound();
         var user = await _context.Users.FindAsync(id);
         if (user == null) return NotFound();
         return View(user);
@@ -38,7 +37,7 @@ public class UsersController : Controller
 
     [HttpPost("Create")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Nickname,Name,Surname,Email")] User user)
+    public async Task<IActionResult> Create([Bind("Id,Name,Surname,Email,DateOfBirth")] User user)
     {
         if (ModelState.IsValid)
         {
@@ -49,20 +48,21 @@ public class UsersController : Controller
         return View(user);
     }
 
-    [HttpGet("Edit/{id}")]
-    public async Task<IActionResult> Edit(int? id)
+
+    [HttpGet("Edit/{id:int}")]
+    public async Task<IActionResult> Edit(int id)
     {
-        if (id == null) return NotFound();
         var user = await _context.Users.FindAsync(id);
         if (user == null) return NotFound();
         return View(user);
     }
 
-    [HttpPost("Edit/{id}")]
+    [HttpPost("Edit/{id:int}")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Nickname,Name,Surname,Email")] User user)
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Email,DateOfBirth")] User user)
     {
         if (id != user.Id) return NotFound();
+
         if (ModelState.IsValid)
         {
             try
@@ -72,31 +72,30 @@ public class UsersController : Controller
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Users.Any(e => e.Id == user.Id))
+                if (!await _context.Users.AnyAsync(e => e.Id == id))
                     return NotFound();
-                else
-                    throw;
+                throw;
             }
             return RedirectToAction(nameof(Index));
         }
         return View(user);
     }
 
-    [HttpGet("Delete/{id}")]
-    public async Task<IActionResult> Delete(int? id)
+    [HttpGet("Delete/{id:int}")]
+    public async Task<IActionResult> Delete(int id)
     {
-        if (id == null) return NotFound();
         var user = await _context.Users.FindAsync(id);
         if (user == null) return NotFound();
         return View(user);
     }
 
-    [HttpPost("Delete/{id}")]
+    [HttpPost("Delete/{id:int}")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
         var user = await _context.Users.FindAsync(id);
         if (user == null) return NotFound();
+
         _context.Users.Remove(user);
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
