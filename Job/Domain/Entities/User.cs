@@ -18,7 +18,7 @@ namespace Domain.Entities
         public string Email { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DateOfBirth { get; set; }  // Изменили на DateTime
+        public DateTime DateOfBirth { get; set; }  
     }
 
 }
