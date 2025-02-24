@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Infrastructure.Data;
-using Application.Interfaces.Common;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -22,8 +21,6 @@ public static class DependencyInjection
             options.UseNpgsql(connectionString);
         });
 
-        services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
-
         // Identity
         services.AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -32,4 +29,3 @@ public static class DependencyInjection
         return services;
     }
 }
-
