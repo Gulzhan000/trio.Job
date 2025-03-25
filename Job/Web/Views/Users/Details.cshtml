@@ -2,11 +2,11 @@
 
 <h2>Детали пользователя</h2>
 
-<p><strong>ID:</strong> @Model.Id</p>
+<p><strong>ID:</strong> @Model.IdUser</p>
 <p><strong>Имя:</strong> @Model.Name</p>
 <p><strong>Фамилия:</strong> @Model.Surname</p>
 <p><strong>Электронная почта:</strong> @Model.Email</p>
 <p><strong>Дата рождения:</strong> @Model.DateOfBirth.Date.ToShortDateString()</p> <!-- Исправлено отображение даты -->
 
-<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редактировать</a>
+<a asp-action="Edit" asp-route-id="@Model.IdUser" class="btn btn-primary">Редактировать</a>
 <a asp-action="Index" class="btn btn-secondary">Вернуться к списку</a>

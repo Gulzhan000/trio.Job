@@ -37,7 +37,7 @@ public class UsersController : Controller
 
     [HttpPost("Create")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Name,Surname,Email,DateOfBirth")] User user)
+    public async Task<IActionResult> Create([Bind("IdUser,Name,Surname,Email,DateOfBirth")] User user)
     {
         if (ModelState.IsValid)
         {
@@ -61,7 +61,7 @@ public class UsersController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Email,DateOfBirth")] User user)
     {
-        if (id != user.Id) return NotFound();
+        if (id != user.IdUser) return NotFound();
 
         if (ModelState.IsValid)
         {
@@ -72,7 +72,7 @@ public class UsersController : Controller
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!await _context.Users.AnyAsync(e => e.Id == id))
+                if (!await _context.Users.AnyAsync(e => e.IdUser == id))
                     return NotFound();
                 throw;
             }

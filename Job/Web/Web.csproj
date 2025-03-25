@@ -24,11 +24,13 @@
 
   <ItemGroup>
     <None Remove="Views\Users\" />
+    <None Remove="Views\UserProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Users\" />
+    <Folder Include="Views\UserProfiles\" />
   </ItemGroup>
 </Project>

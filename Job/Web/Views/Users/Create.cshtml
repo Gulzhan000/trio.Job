@@ -1,6 +1,6 @@
 ﻿@model Domain.Entities.User
 
-<h2 class="text-center">Регистрация</h2>
+<h2 class="text-center">Добавить пользователя</h2>
 <form asp-action="Create">
     <div class="form-group">
         <label asp-for="Name">Имя</label>
@@ -14,10 +14,15 @@
         <label asp-for="Email">Электронная почта</label>
         <input asp-for="Email" class="form-control" />
     </div>
-    <div class="form-group">
+    <div class="form-group mb-3">
+        <!-- Добавляем отступ снизу -->
         <label asp-for="DateOfBirth">Дата рождения</label>
         <input asp-for="DateOfBirth" type="date" class="form-control" />
     </div>
-    <button type="submit" class="btn btn-primary">Создать</button>
+
+    <!-- Обернем кнопки в div, чтобы задать отступы -->
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary me-2">Создать</button>
+        <a asp-action="Index" class="btn btn-secondary">Вернуться назад</a>
+    </div>
 </form>
-<a asp-action="Index">Вернуться к списку</a>
